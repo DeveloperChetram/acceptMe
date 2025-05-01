@@ -1,0 +1,253 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f6d1fc 0%, #b5deff 100%);
+    overflow: hidden;
+}
+
+.main {
+    width: 95%;
+    max-width: 1200px;
+    height: 90vh;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 20px;
+}
+
+.main button {
+    position: absolute;
+    color: white;
+    border: none;
+    width: 120px; /* Fixed width */
+    height: 50px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Ensure buttons stay within container bounds */
+    top: 50%;
+}
+
+#yes {
+    left: 25%;
+    background: linear-gradient(45deg, #7cff6b, #00f329);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+#yes:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+#yes:hover::before,
+#yes:hover::after {
+    content: '❤️';
+    position: absolute;
+    animation: continuousHearts 1.2s infinite;
+    pointer-events: none;
+}
+
+#yes:hover::before {
+    animation-delay: 0s;
+}
+
+#yes:hover::after {
+    animation-delay: 0.6s;
+}
+
+@keyframes continuousHearts {
+    0% {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(-150%, -150%) scale(1.2) rotate(45deg);
+    }
+    50% {
+        transform: translate(-50%, -200%) scale(1.4) rotate(90deg);
+    }
+    75% {
+        transform: translate(50%, -150%) scale(1.2) rotate(135deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(180deg);
+        opacity: 0;
+    }
+}
+
+#no {
+    right: 25%;
+    background: rgba(0, 204, 255, 0.8);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+    mix-blend-mode: difference;
+    z-index: 12;
+}
+
+#h1, #wlcm {
+    text-align: center;
+    color: #0e0d0d;
+    position: absolute;
+    width: 90%;
+    padding: 0 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* mix-blend-mode   : difference; */
+    z-index: 1;
+}
+
+#wlcm {
+    top: 60px;
+    font-size: 28px;
+    color: #6c5ce7;
+}
+
+#h1 {
+    top: 140px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        width: 95%;
+        height: 80vh;
+        padding: 15px;
+    }
+
+    .main button {
+        width: 100px;
+        height: 40px;
+        font-size: 14px;
+        padding: 8px 15px;
+        position: fixed; /* Changed to fixed for better mobile interaction */
+    }
+
+    #yes {
+        left: 10%;
+    }
+
+    #no {
+        right: 10%;
+        pointer-events: auto; /* Enable click events */
+        touch-action: none; /* Prevent default touch actions */
+        -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    }
+
+    #wlcm {
+        top: 40px;
+        font-size: 24px;
+    }
+
+    #h1 {
+        top: 100px;
+        font-size: 26px;
+    }
+
+    /* Ensure no button stays within viewport */
+    #no {
+        max-left: calc(100vw - 120px);
+        max-top: calc(100vh - 60px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main {
+        width: 98%;
+        height: 75vh;
+        padding: 10px;
+    }
+
+    .main button {
+        width: 90px;
+        height: 35px;
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    #yes {
+        left: 5%;
+    }
+
+    #no {
+        right: 5%;
+        touch-action: manipulation; /* Optimize for touch */
+    }
+
+    #wlcm {
+        top: 30px;
+        font-size: 20px;
+    }
+
+    #h1 {
+        top: 80px;
+        font-size: 22px;
+    }
+
+    @keyframes continuousHearts {
+        0% {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 1;
+        }
+        25% {
+            transform: translate(-100%, -100%) scale(1) rotate(45deg);
+        }
+        50% {
+            transform: translate(-50%, -150%) scale(1.2) rotate(90deg);
+        }
+        75% {
+            transform: translate(25%, -100%) scale(1) rotate(135deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0.8) rotate(180deg);
+            opacity: 0;
+        }
+    }
+
+    /* Ensure buttons stay within safe areas on mobile */
+    .main button {
+        position: fixed;
+        z-index: 1000;
+    }
+
+    #no {
+        max-left: calc(100vw - 100px);
+        max-top: calc(100vh - 50px);
+        min-left: 10px;
+        min-top: 10px;
+    }
+}
